@@ -21,7 +21,9 @@ def build_repo(repoPath):
     """
     pwd = os.getcwd()
     os.chdir(repoPath)
-    subprocess.call(["mvn clean install -Dmaven.taskskip"], shell=True)
+    # redirect log into logging file
+    with open("logging.txt", 'w') as lf:
+        subprocess.call(["mvn clean install -Dmaven.taskskip"], shell=True, stdout=lf)
     #os.system("mvn clean install -Dmaven.taskskip")
     os.chdir(pwd)
 
